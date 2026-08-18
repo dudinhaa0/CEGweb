@@ -19,7 +19,7 @@ O projeto foi desenvolvido utilizando:
 ## Estrutura do Projeto
 
 ```text
-CEGO/
+CEGweb/
 ├── index.html
 ├── script.js
 ├── style.css
@@ -42,13 +42,13 @@ Como o projeto utiliza apenas HTML, CSS e JavaScript, não é necessário instal
 Caso esteja utilizando Git:
 
 ```bash
-git clone https://github.com/dudinhaa0/CEGO.git
+git clone https://github.com/dudinhaa0/CEGweb.git
 ```
 
 Depois, entre na pasta:
 
 ```bash
-cd CEGO
+cd CEweb
 ```
 
 ### 2. Execute o projeto
