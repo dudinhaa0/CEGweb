@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Título oculto para leitores de tela (só leem se navegarem até ele) -->
     <h1 class="sr-only">Central de Notificações Acessível</h1>
     
     <div class="app">
@@ -19,19 +18,11 @@
             </div>
             
             <nav class="nav-menu" aria-label="Navegação principal">
-                <a href="#" class="nav-item active" aria-current="page">
+                <span class="nav-item active" aria-current="page">
                     <span class="nav-icon" aria-hidden="true">🔔</span>
                     <span class="nav-text">Notificações</span>
                     <span class="nav-badge" id="badgeContador">0</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <span class="nav-icon" aria-hidden="true">📊</span>
-                    <span class="nav-text">Estatísticas</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <span class="nav-icon" aria-hidden="true">⚙️</span>
-                    <span class="nav-text">Configurações</span>
-                </a>
+                </span>
             </nav>
             
             <div class="sidebar-footer">
@@ -42,7 +33,6 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Header -->
             <header class="content-header">
                 <div class="header-left">
                     <h2>Central de Notificações</h2>
@@ -53,7 +43,6 @@
                 </div>
             </header>
 
-            <!-- Action Bar -->
             <div class="action-bar">
                 <button id="btnNotificacao" class="btn btn-primary">
                     <span class="btn-icon" aria-hidden="true">➕</span>
@@ -65,10 +54,6 @@
                 </button>
             </div>
 
-            <!-- 
-                Área de notificações - AGORA SEM aria-live para não ler ao carregar
-                A notificação individual terá o aria-live
-            -->
             <section 
                 id="notificacoes" 
                 class="notifications-area"
@@ -81,7 +66,6 @@
                 </div>
             </section>
 
-            <!-- Footer Stats -->
             <footer class="content-footer">
                 <div class="stats">
                     <div class="stat-item">
