@@ -6,7 +6,6 @@ const contador = document.getElementById("contador");
 
 let quantidade = 0;
 
-
 // Lista de possíveis notificações
 const mensagens = [
     "Nova mensagem recebida!",
@@ -17,116 +16,114 @@ const mensagens = [
     "Uma nova atividade está disponível."
 ];
 
-
 // Escolhe uma mensagem aleatória
 function escolherMensagem() {
-
-    const indice = Math.floor(
-        Math.random() * mensagens.length
-    );
-
+    const indice = Math.floor(Math.random() * mensagens.length);
     return mensagens[indice];
 }
 
-
 // Atualiza o contador
 function atualizarContador() {
-
     if (quantidade === 0) {
-
-        contador.textContent =
-            "0 notificações";
-
+        contador.textContent = "0";
     } else if (quantidade === 1) {
-
-        contador.textContent =
-            "1 notificação";
-
+        contador.textContent = "1";
     } else {
-
-        contador.textContent =
-            `${quantidade} notificações`;
-
+        contador.textContent = `${quantidade}`;
     }
 
-}
+    // Atualiza badge da sidebar
+    const badge = document.getElementById("badgeContador");
+    if (badge) {
+        badge.textContent = quantidade;
+    }
 
+    // Atualiza última atualização
+    const ultimaAtualizacao = document.getElementById("ultimaAtualizacao");
+    if (ultimaAtualizacao && quantidade > 0) {
+        const agora = new Date();
+        ultimaAtualizacao.textContent = agora.toLocaleTimeString("pt-BR", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+    } else if (ultimaAtualizacao) {
+        ultimaAtualizacao.textContent = "--:--";
+    }
+}
 
 // Cria uma nova notificação
 function adicionarNotificacao() {
-
     // Remove a mensagem "Nenhuma notificação"
-    const mensagemVazia =
-        notificacoes.querySelector(".vazio");
-
+    const mensagemVazia = notificacoes.querySelector(".empty-state");
     if (mensagemVazia) {
         mensagemVazia.remove();
     }
 
-
     quantidade++;
 
-    const novaNotificacao =
-        document.createElement("article");
-
-
+    const novaNotificacao = document.createElement("article");
     novaNotificacao.classList.add("notificacao");
 
+    const mensagem = escolherMensagem();
 
-    const mensagem =
-        escolherMensagem();
-
-
-    const horario =
-        new Date().toLocaleTimeString("pt-BR", {
-            hour: "2-digit",
-            minute: "2-digit"
-        });
-
+    const horario = new Date().toLocaleTimeString("pt-BR", {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
 
     novaNotificacao.innerHTML = `
-        <strong>${mensagem}</strong>
-
-        <small>
-            Recebida às ${horario}
-        </small>
+        <div class="conteudo">
+            <strong>${mensagem}</strong>
+            <small>Recebida às ${horario}</small>
+        </div>
+        <span class="timestamp">${horario}</span>
     `;
 
+    // ===================================================
+    // CONFIGURAÇÃO PARA LEITOR DE TELA
+    // Só essa notificação vai ser anunciada!
+    // ===================================================
+    novaNotificacao.setAttribute('role', 'alert');
+    novaNotificacao.setAttribute('aria-live', 'assertive');
+    novaNotificacao.setAttribute('aria-atomic', 'true');
 
     // Coloca a nova notificação no começo
     notificacoes.prepend(novaNotificacao);
 
-
     atualizarContador();
 }
-
 
 // Limpa todas as notificações
 function limparNotificacoes() {
-
     notificacoes.innerHTML = `
-        <p class="vazio">
-            Nenhuma notificação nova.
-        </p>
+        <div class="empty-state">
+            <span class="empty-icon" aria-hidden="true">📭</span>
+            <h3>Nenhuma notificação</h3>
+            <p>As notificações aparecerão aqui em tempo real</p>
+        </div>
     `;
 
-
     quantidade = 0;
-
-
     atualizarContador();
 }
 
+// Relógio
+function atualizarRelogio() {
+    const relogio = document.getElementById("relogio");
+    if (relogio) {
+        const agora = new Date();
+        relogio.textContent = agora.toLocaleTimeString("pt-BR", {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+    }
+}
 
-// Evento do botão
-btnNotificacao.addEventListener(
-    "click",
-    adicionarNotificacao
-);
+// Eventos
+btnNotificacao.addEventListener("click", adicionarNotificacao);
+btnLimpar.addEventListener("click", limparNotificacoes);
 
-
-// Evento do botão limpar
-btnLimpar.addEventListener(
-    "click",
-    limparNotificacoes
-);
+// Inicia relógio
+atualizarRelogio();
+setInterval(atualizarRelogio, 1000);

@@ -3,91 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Painel de Notificações Acessível</title>
-
+    <title>Central de Notificações</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <!-- Título oculto para leitores de tela (só leem se navegarem até ele) -->
+    <h1 class="sr-only">Central de Notificações Acessível</h1>
+    
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar" aria-label="Menu de navegação">
+            <div class="logo">
+                <span class="logo-icon" aria-hidden="true">📡</span>
+                <span class="logo-text">Notify</span>
+            </div>
+            
+            <nav class="nav-menu" aria-label="Navegação principal">
+                <a href="#" class="nav-item active" aria-current="page">
+                    <span class="nav-icon" aria-hidden="true">🔔</span>
+                    <span class="nav-text">Notificações</span>
+                    <span class="nav-badge" id="badgeContador">0</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon" aria-hidden="true">📊</span>
+                    <span class="nav-text">Estatísticas</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon" aria-hidden="true">⚙️</span>
+                    <span class="nav-text">Configurações</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="status-dot" aria-hidden="true"></div>
+                <span class="status-text">Online</span>
+            </div>
+        </aside>
 
-    <main class="container">
-
-        <section class="painel" aria-labelledby="titulo">
-
-            <header>
-                <span class="icone" aria-hidden="true">🔔</span>
-
-                <h1 id="titulo">
-                    Painel de Notificações
-                </h1>
-
-                <p>
-                    Sistema desenvolvido pensando em acessibilidade
-                    para usuários de leitores de tela.
-                </p>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="content-header">
+                <div class="header-left">
+                    <h2>Central de Notificações</h2>
+                    <p class="header-subtitle">Fique por dentro de todas as atualizações em tempo real</p>
+                </div>
+                <div class="header-right">
+                    <span class="header-time" id="relogio" aria-label="Horário atual">00:00</span>
+                </div>
             </header>
 
-            <div class="acoes">
-
-                <button
-                    id="btnNotificacao"
-                    type="button">
-                    Receber nova notificação
+            <!-- Action Bar -->
+            <div class="action-bar">
+                <button id="btnNotificacao" class="btn btn-primary">
+                    <span class="btn-icon" aria-hidden="true">➕</span>
+                    Nova Notificação
                 </button>
-
-                <button
-                    id="btnLimpar"
-                    type="button"
-                    class="secundario">
-                    Limpar notificações
+                <button id="btnLimpar" class="btn btn-secondary">
+                    <span class="btn-icon" aria-hidden="true">🗑️</span>
+                    Limpar Tudo
                 </button>
-
             </div>
 
-            <!--
-                Região dinâmica acessível.
-
-                aria-live="polite":
-                informa ao leitor de tela que mudanças nessa área
-                devem ser anunciadas.
-
-                aria-atomic="true":
-                faz o leitor anunciar a mensagem completa.
+            <!-- 
+                Área de notificações - AGORA SEM aria-live para não ler ao carregar
+                A notificação individual terá o aria-live
             -->
-
-            <section
-                id="notificacoes"
-                class="notificacoes"
-                aria-live="polite"
-                aria-atomic="true"
-                aria-label="Notificações">
-
-                <p class="vazio">
-                    Nenhuma notificação nova.
-                </p>
-
+            <section 
+                id="notificacoes" 
+                class="notifications-area"
+                aria-label="Lista de notificações"
+            >
+                <div class="empty-state">
+                    <span class="empty-icon" aria-hidden="true">📭</span>
+                    <h3>Nenhuma notificação</h3>
+                    <p>As notificações aparecerão aqui em tempo real</p>
+                </div>
             </section>
 
-            <!--
-                Contador também é atualizado dinamicamente.
-            -->
-
-            <p
-                id="contador"
-                class="contador"
-                role="status"
-                aria-live="polite">
-
-                0 notificações
-
-            </p>
-
-        </section>
-
-    </main>
+            <!-- Footer Stats -->
+            <footer class="content-footer">
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Total:</span>
+                        <span class="stat-value" id="contador">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Última atualização:</span>
+                        <span class="stat-value" id="ultimaAtualizacao">--:--</span>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
 
     <script src="script.js"></script>
-
 </body>
 </html>
