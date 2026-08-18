@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Painel de Notificações Acessível</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <section class="painel" aria-labelledby="titulo">
+
+            <header>
+                <span class="icone" aria-hidden="true">🔔</span>
+
+                <h1 id="titulo">
+                    Painel de Notificações
+                </h1>
+
+                <p>
+                    Sistema desenvolvido pensando em acessibilidade
+                    para usuários de leitores de tela.
+                </p>
+            </header>
+
+            <div class="acoes">
+
+                <button
+                    id="btnNotificacao"
+                    type="button">
+                    Receber nova notificação
+                </button>
+
+                <button
+                    id="btnLimpar"
+                    type="button"
+                    class="secundario">
+                    Limpar notificações
+                </button>
+
+            </div>
+
+            <!--
+                Região dinâmica acessível.
+
+                aria-live="polite":
+                informa ao leitor de tela que mudanças nessa área
+                devem ser anunciadas.
+
+                aria-atomic="true":
+                faz o leitor anunciar a mensagem completa.
+            -->
+
+            <section
+                id="notificacoes"
+                class="notificacoes"
+                aria-live="polite"
+                aria-atomic="true"
+                aria-label="Notificações">
+
+                <p class="vazio">
+                    Nenhuma notificação nova.
+                </p>
+
+            </section>
+
+            <!--
+                Contador também é atualizado dinamicamente.
+            -->
+
+            <p
+                id="contador"
+                class="contador"
+                role="status"
+                aria-live="polite">
+
+                0 notificações
+
+            </p>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
