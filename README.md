@@ -142,6 +142,6 @@ Projeto desenvolvido para fins acadêmicos e de aprendizado em desenvolvimento w
 
 ### Contato
 
-* GitHub: **adicione aqui seu perfil do GitHub**
-* LinkedIn: **adicione aqui seu perfil do LinkedIn**
-* E-mail: **adicione aqui seu e-mail de contato**
+* GitHub: **analoliveira113-ctrl**, **dudinhaa0**, **isabelinhh** e **Elo1zeM**
+* LinkedIn: **linkedin.com/in/ana-laura-paulino-oliveira-054052392**, **linkedin.com/in/maria-eduarda-739846394**, **linkedin.com/in/isabelly-oliveira-do-carmo-9310a0406** e **linkedin.com/in/eloize-oliveira-muzel-a828923a9**
+* E-mail: **anaaa.paulino14@gmail.com**, **dudadiasduda14@gmail.com**, **isabelly.o.carmo@aluno.senai.br** e **eloize.muzel@aluno.senai.br**
